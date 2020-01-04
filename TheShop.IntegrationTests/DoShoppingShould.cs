@@ -18,9 +18,13 @@ namespace TheShop.IntegrationTests
                                     + Environment.NewLine + "Info: Article with ID = 1 is sold."
                                     + Environment.NewLine + "Found article with ID: 1"
                                     + Environment.NewLine + "Article with ID: 12 not found." + Environment.NewLine;
+            const int orderAndSellArticleId = 1;
+            const int maxExpectedPrice = 20;
+            const int buyerId = 10;
+            const int getArticleId = 12;
 
             //Exercise
-            Program.DoShopping();
+            Program.DoShopping(orderAndSellArticleId, maxExpectedPrice, buyerId, getArticleId);
 
             //Verify
             Assert.Equal(expectedOutput, consoleOutput.GetOutput());

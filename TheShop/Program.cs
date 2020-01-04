@@ -7,12 +7,17 @@ namespace TheShop
 		private static IShopService _shopService;
 
 	    public static void Main()
-        {
-            DoShopping();
-            Console.ReadKey();
-        }
+	    {
+	        const int orderAndSellArticleId = 1;
+	        const int maxExpectedPrice = 20;
+	        const int buyerId = 10;
+	        const int getArticleId = 12;
 
-	    public static void DoShopping(int orderAndSellArticleId = 1, int maxExpectedPrice = 20, int buyerId = 10, int getArticleId = 12)
+	        DoShopping(orderAndSellArticleId, maxExpectedPrice, buyerId, getArticleId);
+	        Console.ReadKey();
+	    }
+
+	    public static void DoShopping(int orderAndSellArticleId, int maxExpectedPrice, int buyerId, int getArticleId)
 	    {
 	        _shopService = new ShopService();
 
