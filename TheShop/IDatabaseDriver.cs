@@ -4,7 +4,7 @@ namespace TheShop
 {
     public interface IDatabaseDriver
     {
-        Article GetById(int id);
+        Article GetArticleBy(int articleId);
         void Save(Article article);
     }
 }

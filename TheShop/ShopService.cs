@@ -66,9 +66,6 @@ namespace TheShop
 			#endregion
 		}
 
-		public Article GetById(int id)
-		{
-			return _databaseDriver.GetById(id);
-		}
+		public Article GetArticleBy(int articleId) => _databaseDriver.GetArticleBy(articleId);
 	}
 }

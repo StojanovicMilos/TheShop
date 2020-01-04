@@ -9,10 +9,10 @@ namespace TheShop
     {
 		private readonly List<Article> _articles = new List<Article>();
 
-		public Article GetById(int id)
+		public Article GetArticleBy(int articleId)
 		{
-		    if (id <= 0) throw new ArgumentOutOfRangeException(nameof(id));
-		    return _articles.FirstOrDefault(x => x.ID == id);
+		    if (articleId <= 0) throw new ArgumentOutOfRangeException(nameof(articleId));
+		    return _articles.FirstOrDefault(x => x.Id == articleId);
 		}
 
         public void Save(Article article)

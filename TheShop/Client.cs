@@ -28,14 +28,14 @@ namespace TheShop
 
             foreach (var articleId in getArticleIds)
             {
-                var article = _shopService.GetById(articleId);
+                var article = _shopService.GetArticleBy(articleId);
                 if (article == null)
                 {
                     _clientLogger.WriteLine("Article with ID: " + articleId + " not found.");
                 }
                 else
                 {
-                    _clientLogger.WriteLine("Found article with ID: " + article.ID);
+                    _clientLogger.WriteLine("Found article with ID: " + article.Id);
                 }
             }
         }

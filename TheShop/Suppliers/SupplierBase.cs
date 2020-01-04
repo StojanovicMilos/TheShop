@@ -17,7 +17,7 @@ namespace TheShop.Suppliers
 		{
 			return new Article()
 			{
-				ID = Id,
+				Id = Id,
 				NameOfArticle = NameOfArticle,
 				ArticlePrice = ArticlePrice
 			};

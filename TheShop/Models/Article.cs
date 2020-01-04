@@ -4,7 +4,7 @@ namespace TheShop.Models
 {
 	public class Article
 	{
-		public int ID { get; set; }
+		public int Id { get; set; }
 		public string NameOfArticle { get; set; }
 		public int ArticlePrice { get; set; }
 		public bool IsSold { get; set; }
