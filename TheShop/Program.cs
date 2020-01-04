@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TheShop.Suppliers;
 
 namespace TheShop
 {
@@ -7,7 +8,7 @@ namespace TheShop
     {
         public static void Main()
         {
-            Client client = new Client(new ShopService(new ConsoleShopServiceLogger()), new ConsoleClientLogger());
+            Client client = GetDefaultClient();
 
             OrderAndSellRequest orderAndSellRequest = new OrderAndSellRequest {OrderAndSellArticleId = 1, BuyerId = 10};
             List<int> getArticleIds = new List<int> {1, 12};
@@ -15,5 +16,14 @@ namespace TheShop
 
             Console.ReadKey();
         }
+
+        public static Client GetDefaultClient() => new Client(new ShopService(
+                new DatabaseDriver(),
+                new ConsoleShopServiceLogger(),
+                new List<ISupplier>
+                {
+                    new Supplier1(), new Supplier2(), new Supplier3()
+                }),
+            new ConsoleClientLogger());
     }
 }

@@ -10,19 +10,16 @@ namespace TheShop
 	{
 		private readonly DatabaseDriver _databaseDriver;
 		private readonly IShopServiceLogger _logger;
-		private List<ISupplier> _suppliers;
+		private readonly List<ISupplier> _suppliers;
 
-		public ShopService(IShopServiceLogger logger)
-		{
-		    _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-		    _databaseDriver = new DatabaseDriver();
-			_suppliers = new List<ISupplier>()
-			{
-				new Supplier1(),
-				new Supplier2(),
-				new Supplier3()
-			};
-		}
+	    public ShopService(DatabaseDriver databaseDriver, IShopServiceLogger logger, List<ISupplier> suppliers)
+	    {
+	        if (suppliers == null) throw new ArgumentNullException(nameof(suppliers));
+	        if (suppliers.Count == 0) throw new ArgumentException("Value cannot be an empty collection.", nameof(suppliers));
+	        _databaseDriver = databaseDriver ?? throw new ArgumentNullException(nameof(databaseDriver));
+	        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+	        _suppliers = suppliers;
+	    }
 
 		public void OrderAndSellArticle(OrderAndSellRequest orderAndSellRequest)
 		{
