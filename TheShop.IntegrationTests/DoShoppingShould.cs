@@ -1,5 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
+using ApprovalTests.Combinations;
+using ApprovalTests.Reporters;
 using Xunit;
 
 namespace TheShop.IntegrationTests
@@ -7,7 +10,7 @@ namespace TheShop.IntegrationTests
     public class DoShoppingShould
     {
         [Fact]
-        public void OutputTextToConsole()
+        public void OutputTextToConsoleForInitialUseCase()
         {
             //Setup
             var consoleOutput = new ConsoleOutput();
@@ -24,6 +27,29 @@ namespace TheShop.IntegrationTests
 
             //Teardown
             consoleOutput.Dispose();
+        }
+
+        [Fact]
+        [UseReporter(typeof(DiffReporter))]
+        public void OutputTextToConsoleForOtherUseCases()
+        {
+            //Arrange
+            int[] orderAndSellArticleIds = Enumerable.Range(1, 10).ToArray();
+            int[] maxExpectedPrices = Enumerable.Range(0, 100).ToArray();
+            int[] buyerIds = Enumerable.Range(1, 5).ToArray();
+            int[] getArticleIds = Enumerable.Range(1, 10).ToArray();
+
+            //Act+Assert
+            CombinationApprovals.VerifyAllCombinations(DoShoppingWithOutput, orderAndSellArticleIds, maxExpectedPrices, buyerIds, getArticleIds);
+        }
+
+        private static string DoShoppingWithOutput(int orderAndSellArticleId, int maxExpectedPrice, int buyerId, int getArticleId)
+        {
+            using (var consoleOutput = new ConsoleOutput())
+            {
+                Program.DoShopping(orderAndSellArticleId, maxExpectedPrice, buyerId, getArticleId);
+                return consoleOutput.GetOutput();
+            }
         }
     }
 
