@@ -8,11 +8,11 @@ namespace TheShop
 {
 	public class ShopService : IShopService
 	{
-		private readonly DatabaseDriver _databaseDriver;
+		private readonly IDatabaseDriver _databaseDriver;
 		private readonly IShopServiceLogger _logger;
 		private readonly List<ISupplier> _suppliers;
 
-	    public ShopService(DatabaseDriver databaseDriver, IShopServiceLogger logger, List<ISupplier> suppliers)
+	    public ShopService(IDatabaseDriver databaseDriver, IShopServiceLogger logger, List<ISupplier> suppliers)
 	    {
 	        if (suppliers == null) throw new ArgumentNullException(nameof(suppliers));
 	        if (suppliers.Count == 0) throw new ArgumentException("Value cannot be an empty collection.", nameof(suppliers));

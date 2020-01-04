@@ -47,6 +47,7 @@
     <Compile Include="ConsoleClientLogger.cs" />
     <Compile Include="DatabaseDriver.cs" />
     <Compile Include="IClientLogger.cs" />
+    <Compile Include="IDatabaseDriver.cs" />
     <Compile Include="IShopService.cs" />
     <Compile Include="ConsoleShopServiceLogger.cs" />
     <Compile Include="IShopServiceLogger.cs" />
