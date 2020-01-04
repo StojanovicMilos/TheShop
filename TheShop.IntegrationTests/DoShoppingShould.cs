@@ -20,7 +20,7 @@ namespace TheShop.IntegrationTests
                                     + Environment.NewLine + "Article with ID: 12 not found." + Environment.NewLine;
             OrderAndSellRequest orderAndSellRequest = new OrderAndSellRequest {OrderAndSellArticleId = 1, BuyerId = 10};
             List<int> getArticleIds = new List<int> {1, 12};
-            Client client = new Client(new ShopService());
+            Client client = new Client(new ShopService(new ConsoleShopServiceLogger()), new ConsoleClientLogger());
 
             //Exercise
             client.DoShopping(orderAndSellRequest, getArticleIds);
@@ -50,7 +50,7 @@ namespace TheShop.IntegrationTests
         {
             using (var consoleOutput = new ConsoleOutput())
             {
-                Client client = new Client(new ShopService());
+                Client client = new Client(new ShopService(new ConsoleShopServiceLogger()), new ConsoleClientLogger());
                 client.DoShopping(new OrderAndSellRequest {OrderAndSellArticleId = orderAndSellArticleId, BuyerId = buyerId}, getArticleIds);
                 return consoleOutput.GetOutput();
             }

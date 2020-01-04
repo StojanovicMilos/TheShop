@@ -9,13 +9,13 @@ namespace TheShop
 	public class ShopService : IShopService
 	{
 		private readonly DatabaseDriver _databaseDriver;
-		private readonly Logger _logger;
+		private readonly IShopServiceLogger _logger;
 		private List<ISupplier> _suppliers;
 
-		public ShopService()
+		public ShopService(IShopServiceLogger logger)
 		{
-			_databaseDriver = new DatabaseDriver();
-			_logger = new Logger();
+		    _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+		    _databaseDriver = new DatabaseDriver();
 			_suppliers = new List<ISupplier>()
 			{
 				new Supplier1(),
