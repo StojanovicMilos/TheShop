@@ -20,9 +20,10 @@ namespace TheShop.IntegrationTests
                                     + Environment.NewLine + "Article with ID: 12 not found." + Environment.NewLine;
             OrderAndSellRequest orderAndSellRequest = new OrderAndSellRequest {OrderAndSellArticleId = 1, BuyerId = 10};
             List<int> getArticleIds = new List<int> {1, 12};
+            Client client = new Client(new ShopService());
 
             //Exercise
-            Program.DoShopping(orderAndSellRequest, getArticleIds);
+            client.DoShopping(orderAndSellRequest, getArticleIds);
 
             //Verify
             Assert.Equal(expectedOutput, consoleOutput.GetOutput());
@@ -39,6 +40,7 @@ namespace TheShop.IntegrationTests
             int[] orderAndSellArticleIds = Enumerable.Range(1, 10).ToArray();
             int[] buyerIds = Enumerable.Range(1, 5).ToArray();
             TestList<TestList<int>> getArticleIds = new TestList<TestList<int>> {new TestList<int>(Enumerable.Range(1, 10))};
+            
 
             //Act+Assert
             CombinationApprovals.VerifyAllCombinations(DoShoppingWithOutput, orderAndSellArticleIds, buyerIds, getArticleIds);
@@ -48,7 +50,8 @@ namespace TheShop.IntegrationTests
         {
             using (var consoleOutput = new ConsoleOutput())
             {
-                Program.DoShopping(new OrderAndSellRequest {OrderAndSellArticleId = orderAndSellArticleId, BuyerId = buyerId}, getArticleIds);
+                Client client = new Client(new ShopService());
+                client.DoShopping(new OrderAndSellRequest {OrderAndSellArticleId = orderAndSellArticleId, BuyerId = buyerId}, getArticleIds);
                 return consoleOutput.GetOutput();
             }
         }
