@@ -1,5 +1,5 @@
 ﻿using System;
-using System.IO;
+using System.Collections.Generic;
 using System.Linq;
 using ApprovalTests.Combinations;
 using ApprovalTests.Reporters;
@@ -18,15 +18,11 @@ namespace TheShop.IntegrationTests
                                     + Environment.NewLine + "Info: Article with ID = 1 is sold."
                                     + Environment.NewLine + "Found article with ID: 1"
                                     + Environment.NewLine + "Article with ID: 12 not found." + Environment.NewLine;
-            OrderAndSellRequest orderAndSellRequest = new OrderAndSellRequest
-            {
-                OrderAndSellArticleId = 1,
-                BuyerId = 10
-            };
-            const int getArticleId = 12;
+            OrderAndSellRequest orderAndSellRequest = new OrderAndSellRequest {OrderAndSellArticleId = 1, BuyerId = 10};
+            List<int> getArticleIds = new List<int> {1, 12};
 
             //Exercise
-            Program.DoShopping(orderAndSellRequest, getArticleId);
+            Program.DoShopping(orderAndSellRequest, getArticleIds);
 
             //Verify
             Assert.Equal(expectedOutput, consoleOutput.GetOutput());
@@ -42,38 +38,19 @@ namespace TheShop.IntegrationTests
             //Arrange
             int[] orderAndSellArticleIds = Enumerable.Range(1, 10).ToArray();
             int[] buyerIds = Enumerable.Range(1, 5).ToArray();
-            int[] getArticleIds = Enumerable.Range(1, 10).ToArray();
+            TestList<TestList<int>> getArticleIds = new TestList<TestList<int>> {new TestList<int>(Enumerable.Range(1, 10))};
 
             //Act+Assert
             CombinationApprovals.VerifyAllCombinations(DoShoppingWithOutput, orderAndSellArticleIds, buyerIds, getArticleIds);
         }
 
-        private static string DoShoppingWithOutput(int orderAndSellArticleId, int buyerId, int getArticleId)
+        private static string DoShoppingWithOutput(int orderAndSellArticleId, int buyerId, List<int> getArticleIds)
         {
             using (var consoleOutput = new ConsoleOutput())
             {
-                Program.DoShopping(new OrderAndSellRequest {OrderAndSellArticleId = orderAndSellArticleId, BuyerId = buyerId}, getArticleId);
+                Program.DoShopping(new OrderAndSellRequest {OrderAndSellArticleId = orderAndSellArticleId, BuyerId = buyerId}, getArticleIds);
                 return consoleOutput.GetOutput();
             }
-        }
-    }
-
-    public class ConsoleOutput : IDisposable
-    {
-        private readonly StringWriter _stringWriter;
-
-        public ConsoleOutput()
-        {
-            _stringWriter = new StringWriter();
-            Console.SetOut(_stringWriter);
-        }
-
-        public string GetOutput() => _stringWriter.ToString();
-
-        public void Dispose()
-        {
-            Console.SetOut(Console.Out);
-            _stringWriter.Dispose();
         }
     }
 }

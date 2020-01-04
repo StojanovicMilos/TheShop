@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TheShop
 {
@@ -13,13 +14,13 @@ namespace TheShop
 	            OrderAndSellArticleId = 1,
 	            BuyerId = 10
 	        };
-	        const int getArticleId = 12;
+	        List<int> getArticleIds = new List<int> {1, 12};
 
-	        DoShopping(orderAndSellRequest, getArticleId);
+	        DoShopping(orderAndSellRequest, getArticleIds);
 	        Console.ReadKey();
 	    }
 
-	    public static void DoShopping(OrderAndSellRequest orderAndSellRequest, int getArticleId)
+	    public static void DoShopping(OrderAndSellRequest orderAndSellRequest, IEnumerable<int> getArticleIds)
 	    {
 	        _shopService = new ShopService();
 
@@ -33,35 +34,18 @@ namespace TheShop
 	            Console.WriteLine(ex);
 	        }
 
-	        try
+	        foreach (var articleId in getArticleIds)
 	        {
-	            //print article on console
-	            var article = _shopService.GetById(1);
-	            Console.WriteLine("Found article with ID: " + article.ID);
-	        }
-	        catch (Exception ex)
-	        {
-	            Console.WriteLine("Article not found: " + ex);
-	        }
-
-	        try
-	        {
-	            //print article on console				
-	            var article = _shopService.GetById(getArticleId);
+	            var article = _shopService.GetById(articleId);
 	            if (article == null)
 	            {
-	                Console.WriteLine("Article with ID: " + getArticleId + " not found.");
+	                Console.WriteLine("Article with ID: " + articleId + " not found.");
 	            }
 	            else
 	            {
 	                Console.WriteLine("Found article with ID: " + article.ID);
 	            }
-
-	        }
-	        catch (Exception ex)
-	        {
-	            Console.WriteLine("Article not found: " + ex);
-	        }
+            }
 	    }
 	}
 }
