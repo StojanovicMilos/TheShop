@@ -12,49 +12,49 @@ namespace TheShop
             Console.ReadKey();
         }
 
-        public static void DoShopping()
-        {
-            _shopService = new ShopService();
+	    public static void DoShopping(int orderAndSellArticleId = 1, int maxExpectedPrice = 20, int buyerId = 10, int getArticleId = 12)
+	    {
+	        _shopService = new ShopService();
 
-            try
-            {
-                //order and sell
-                _shopService.OrderAndSellArticle(1, 20, 10);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
+	        try
+	        {
+	            //order and sell
+	            _shopService.OrderAndSellArticle(orderAndSellArticleId, maxExpectedPrice, buyerId);
+	        }
+	        catch (Exception ex)
+	        {
+	            Console.WriteLine(ex);
+	        }
 
-            try
-            {
-                //print article on console
-                var article = _shopService.GetById(1);
-                Console.WriteLine("Found article with ID: " + article.ID);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Article not found: " + ex);
-            }
+	        try
+	        {
+	            //print article on console
+	            var article = _shopService.GetById(1);
+	            Console.WriteLine("Found article with ID: " + article.ID);
+	        }
+	        catch (Exception ex)
+	        {
+	            Console.WriteLine("Article not found: " + ex);
+	        }
 
-            try
-            {
-                //print article on console				
-                var article = _shopService.GetById(12);
-                if (article == null)
-                {
-                    Console.WriteLine("Article with ID: " + 12 + " not found.");
-                }
-                else
-                {
-                    Console.WriteLine("Found article with ID: " + article.ID);
-                }
+	        try
+	        {
+	            //print article on console				
+	            var article = _shopService.GetById(getArticleId);
+	            if (article == null)
+	            {
+	                Console.WriteLine("Article with ID: " + getArticleId + " not found.");
+	            }
+	            else
+	            {
+	                Console.WriteLine("Found article with ID: " + article.ID);
+	            }
 
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Article not found: " + ex);
-            }
-        }
-    }
+	        }
+	        catch (Exception ex)
+	        {
+	            Console.WriteLine("Article not found: " + ex);
+	        }
+	    }
+	}
 }
