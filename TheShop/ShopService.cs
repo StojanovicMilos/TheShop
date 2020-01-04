@@ -24,8 +24,11 @@ namespace TheShop
 			};
 		}
 
-		public void OrderAndSellArticle(int id, int maxExpectedPrice, int buyerId)
+		public void OrderAndSellArticle(OrderAndSellRequest orderAndSellRequest)
 		{
+		    int id = orderAndSellRequest.OrderAndSellArticleId;
+		    int buyerId = orderAndSellRequest.BuyerId;
+
 			#region ordering article
 
 			Article article = null;

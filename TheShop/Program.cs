@@ -8,23 +8,25 @@ namespace TheShop
 
 	    public static void Main()
 	    {
-	        const int orderAndSellArticleId = 1;
-	        const int maxExpectedPrice = 20;
-	        const int buyerId = 10;
+	        OrderAndSellRequest orderAndSellRequest = new OrderAndSellRequest
+	        {
+	            OrderAndSellArticleId = 1,
+	            BuyerId = 10
+	        };
 	        const int getArticleId = 12;
 
-	        DoShopping(orderAndSellArticleId, maxExpectedPrice, buyerId, getArticleId);
+	        DoShopping(orderAndSellRequest, getArticleId);
 	        Console.ReadKey();
 	    }
 
-	    public static void DoShopping(int orderAndSellArticleId, int maxExpectedPrice, int buyerId, int getArticleId)
+	    public static void DoShopping(OrderAndSellRequest orderAndSellRequest, int getArticleId)
 	    {
 	        _shopService = new ShopService();
 
 	        try
 	        {
 	            //order and sell
-	            _shopService.OrderAndSellArticle(orderAndSellArticleId, maxExpectedPrice, buyerId);
+	            _shopService.OrderAndSellArticle(orderAndSellRequest);
 	        }
 	        catch (Exception ex)
 	        {

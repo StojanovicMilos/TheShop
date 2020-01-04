@@ -18,13 +18,15 @@ namespace TheShop.IntegrationTests
                                     + Environment.NewLine + "Info: Article with ID = 1 is sold."
                                     + Environment.NewLine + "Found article with ID: 1"
                                     + Environment.NewLine + "Article with ID: 12 not found." + Environment.NewLine;
-            const int orderAndSellArticleId = 1;
-            const int maxExpectedPrice = 20;
-            const int buyerId = 10;
+            OrderAndSellRequest orderAndSellRequest = new OrderAndSellRequest
+            {
+                OrderAndSellArticleId = 1,
+                BuyerId = 10
+            };
             const int getArticleId = 12;
 
             //Exercise
-            Program.DoShopping(orderAndSellArticleId, maxExpectedPrice, buyerId, getArticleId);
+            Program.DoShopping(orderAndSellRequest, getArticleId);
 
             //Verify
             Assert.Equal(expectedOutput, consoleOutput.GetOutput());
@@ -39,19 +41,18 @@ namespace TheShop.IntegrationTests
         {
             //Arrange
             int[] orderAndSellArticleIds = Enumerable.Range(1, 10).ToArray();
-            int[] maxExpectedPrices = Enumerable.Range(0, 100).ToArray();
             int[] buyerIds = Enumerable.Range(1, 5).ToArray();
             int[] getArticleIds = Enumerable.Range(1, 10).ToArray();
 
             //Act+Assert
-            CombinationApprovals.VerifyAllCombinations(DoShoppingWithOutput, orderAndSellArticleIds, maxExpectedPrices, buyerIds, getArticleIds);
+            CombinationApprovals.VerifyAllCombinations(DoShoppingWithOutput, orderAndSellArticleIds, buyerIds, getArticleIds);
         }
 
-        private static string DoShoppingWithOutput(int orderAndSellArticleId, int maxExpectedPrice, int buyerId, int getArticleId)
+        private static string DoShoppingWithOutput(int orderAndSellArticleId, int buyerId, int getArticleId)
         {
             using (var consoleOutput = new ConsoleOutput())
             {
-                Program.DoShopping(orderAndSellArticleId, maxExpectedPrice, buyerId, getArticleId);
+                Program.DoShopping(new OrderAndSellRequest {OrderAndSellArticleId = orderAndSellArticleId, BuyerId = buyerId}, getArticleId);
                 return consoleOutput.GetOutput();
             }
         }
