@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F7416770-9271-47E7-AC1A-ACFDB1F75DAF}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>TheShop</RootNamespace>
-    <AssemblyName>TheShop</AssemblyName>
+    <ProjectGuid>{6FB14214-691B-4D60-A8EC-0ADB15A17332}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>TheShop.ConsoleApp</RootNamespace>
+    <AssemblyName>TheShop.ConsoleApp</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,9 +32,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,6 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client.cs" />
+    <Compile Include="ConsoleClientLogger.cs" />
+    <Compile Include="ConsoleShopServiceLogger.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,9 +57,10 @@
       <Project>{7a62a357-22ff-4917-bee9-8ae24f2bc41b}</Project>
       <Name>TheShop.BL</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
+    <ProjectReference Include="..\TheShop.DAL\TheShop.DAL.csproj">
+      <Project>{28B02F6C-E66E-4D8D-8184-45C9CFA7A21B}</Project>
+      <Name>TheShop.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
