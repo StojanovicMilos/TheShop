@@ -22,11 +22,7 @@ namespace TheShop.BL.SuppliersService
         private ISupplier GetSupplierWithMinimumPriceFor(int articleId) =>
             _suppliers
                 .Where(s => s.ArticleAvailableInInventory(articleId))
-                .WithMinimum(s =>
-                {
-                    var orderArticleResult = s.GetArticle(articleId);
-                    return orderArticleResult.Successful ? orderArticleResult.ReturnValue.ArticlePrice : int.MaxValue;
-                });
+                .WithMinimum(s => s.GetArticle(articleId).ReturnValue.ArticlePrice);
 
         public OperationResult<Article.Article> GetArticle(int articleId)
         {
