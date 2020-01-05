@@ -1,15 +1,14 @@
 ﻿using System;
 using TheShop.BL.Interfaces;
-using TheShop.BL.SuppliersService;
 
 namespace TheShop.BL.ShopService
 {
     public class ShopService : IShopService
 	{
-	    private readonly Suppliers _supplier;
+	    private readonly ISupplier _supplier;
 	    private readonly IArticleSeller _articleSeller;
 
-	    public ShopService(Suppliers supplier, IArticleSeller articleSeller)
+	    public ShopService(ISupplier supplier, IArticleSeller articleSeller)
 	    {
 	        _supplier = supplier ?? throw new ArgumentNullException(nameof(supplier));
 	        _articleSeller = articleSeller ?? throw new ArgumentNullException(nameof(articleSeller));
