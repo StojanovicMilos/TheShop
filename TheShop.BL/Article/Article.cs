@@ -21,14 +21,15 @@ namespace TheShop.BL.Article
 	        ArticlePrice = articlePrice;
 	    }
 
-	    public OperationResult<Article> Sell(DateTime soldDate, int buyerId)
+	    public OperationResult<Article> Sell(SellRequest sellRequest)
 	    {
-	        if (buyerId <= 0) throw new ArgumentOutOfRangeException(nameof(buyerId));
+	        if (sellRequest == null) throw new ArgumentNullException(nameof(sellRequest));
+
 	        if (IsSold)
 	            return OperationResult<Article>.Failure($"Article with id {Id} is already sold");
 
-	        SoldDate = soldDate;
-	        BuyerId = buyerId;
+	        SoldDate = sellRequest.SoldDate;
+	        BuyerId = sellRequest.BuyerId;
 
 	        return OperationResult<Article>.Success();
 	    }
