@@ -5,7 +5,7 @@ namespace TheShop
 {
     public class ArticleSeller : IArticleSeller
     {
-        private readonly IDatabaseDriver _databaseDriver;
+        private readonly IArticleSellerDatabaseDriver _databaseDriver;
 
         public ArticleSeller(IDatabaseDriver databaseDriver)
         {
