@@ -18,8 +18,17 @@ namespace TheShop
             if (orderAndSellRequest == null) throw new ArgumentNullException(nameof(orderAndSellRequest));
 
             DateTime soldDate = DateTime.Now;
-            article.Sell(soldDate, orderAndSellRequest.BuyerId);
-            return _databaseDriver.Save(article);
+            var articleSellResult = article.Sell(soldDate, orderAndSellRequest.BuyerId);
+            if (!articleSellResult.Successful)
+                return articleSellResult;
+
+            var databaseSaveResult = _databaseDriver.Save(article);
+            if (!databaseSaveResult.Successful)
+            {
+                article.CancelSellTransaction();
+            }
+
+            return databaseSaveResult;
         }
     }
 }

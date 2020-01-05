@@ -22,33 +22,9 @@ namespace TheShop
             var databaseDriver = new DatabaseDriver();
             return new Client(new ShopService(new Suppliers(new List<ISupplier>
                     {
-                        new Supplier(new List<Article>
-                        {
-                            new Article
-                            {
-                                ArticlePrice = 458,
-                                Id = 1,
-                                NameOfArticle = "Article from supplier1"
-                            }
-                        }),
-                        new Supplier(new List<Article>
-                        {
-                            new Article
-                            {
-                                ArticlePrice = 459,
-                                Id = 1,
-                                NameOfArticle = "Article from supplier2"
-                            }
-                        }),
-                        new Supplier(new List<Article>
-                        {
-                            new Article
-                            {
-                                ArticlePrice = 460,
-                                Id = 1,
-                                NameOfArticle = "Article from supplier3"
-                            }
-                        })
+                        new Supplier(new List<Article> {new Article(1, "Article from supplier1", 458)}),
+                        new Supplier(new List<Article> {new Article(1, "Article from supplier2", 459)}),
+                        new Supplier(new List<Article> {new Article(1, "Article from supplier3", 460)})
                     }),
                     new LoggingArticleSeller(new ConsoleShopServiceLogger(), new ArticleSeller(databaseDriver))),
                 new ConsoleClientLogger(), new ArticleService(databaseDriver));
