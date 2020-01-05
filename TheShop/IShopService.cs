@@ -4,7 +4,7 @@ namespace TheShop
 {
 	public interface IShopService
 	{
-	    void OrderAndSellArticle(OrderAndSellRequest orderAndSellRequest);
+	    OrderAndSellArticleResult OrderAndSellArticle(OrderAndSellRequest orderAndSellRequest);
 		Article GetArticleBy(int articleId);
 	}
 }

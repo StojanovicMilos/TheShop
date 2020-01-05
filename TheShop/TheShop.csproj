@@ -53,6 +53,7 @@
     <Compile Include="ConsoleShopServiceLogger.cs" />
     <Compile Include="IShopServiceLogger.cs" />
     <Compile Include="Models\Article.cs" />
+    <Compile Include="OrderAndSellArticleResult.cs" />
     <Compile Include="OrderAndSellRequest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

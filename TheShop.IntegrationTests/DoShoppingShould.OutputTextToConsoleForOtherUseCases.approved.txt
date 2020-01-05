@@ -23,33 +23,23 @@ Info: Article with ID = 1 is sold.
 Found article with ID: 1
 Article with ID: 2 not found.
 
-[2,1,GetArticleIDs:1,2] => System.Exception: Could not order article
-   at TheShop.ShopService.OrderAndSellArticle(OrderAndSellRequest orderAndSellRequest) in E:\My Documents\Visual Studio Projects\TheShop\TheShop\ShopService.cs:line 34
-   at TheShop.Client.DoShopping(OrderAndSellRequest orderAndSellRequest, IEnumerable`1 getArticleIds) in E:\My Documents\Visual Studio Projects\TheShop\TheShop\Client.cs:line 22
+[2,1,GetArticleIDs:1,2] => Could not order article
 Article with ID: 1 not found.
 Article with ID: 2 not found.
 
-[2,2,GetArticleIDs:1,2] => System.Exception: Could not order article
-   at TheShop.ShopService.OrderAndSellArticle(OrderAndSellRequest orderAndSellRequest) in E:\My Documents\Visual Studio Projects\TheShop\TheShop\ShopService.cs:line 34
-   at TheShop.Client.DoShopping(OrderAndSellRequest orderAndSellRequest, IEnumerable`1 getArticleIds) in E:\My Documents\Visual Studio Projects\TheShop\TheShop\Client.cs:line 22
+[2,2,GetArticleIDs:1,2] => Could not order article
 Article with ID: 1 not found.
 Article with ID: 2 not found.
 
-[2,3,GetArticleIDs:1,2] => System.Exception: Could not order article
-   at TheShop.ShopService.OrderAndSellArticle(OrderAndSellRequest orderAndSellRequest) in E:\My Documents\Visual Studio Projects\TheShop\TheShop\ShopService.cs:line 34
-   at TheShop.Client.DoShopping(OrderAndSellRequest orderAndSellRequest, IEnumerable`1 getArticleIds) in E:\My Documents\Visual Studio Projects\TheShop\TheShop\Client.cs:line 22
+[2,3,GetArticleIDs:1,2] => Could not order article
 Article with ID: 1 not found.
 Article with ID: 2 not found.
 
-[2,4,GetArticleIDs:1,2] => System.Exception: Could not order article
-   at TheShop.ShopService.OrderAndSellArticle(OrderAndSellRequest orderAndSellRequest) in E:\My Documents\Visual Studio Projects\TheShop\TheShop\ShopService.cs:line 34
-   at TheShop.Client.DoShopping(OrderAndSellRequest orderAndSellRequest, IEnumerable`1 getArticleIds) in E:\My Documents\Visual Studio Projects\TheShop\TheShop\Client.cs:line 22
+[2,4,GetArticleIDs:1,2] => Could not order article
 Article with ID: 1 not found.
 Article with ID: 2 not found.
 
-[2,5,GetArticleIDs:1,2] => System.Exception: Could not order article
-   at TheShop.ShopService.OrderAndSellArticle(OrderAndSellRequest orderAndSellRequest) in E:\My Documents\Visual Studio Projects\TheShop\TheShop\ShopService.cs:line 34
-   at TheShop.Client.DoShopping(OrderAndSellRequest orderAndSellRequest, IEnumerable`1 getArticleIds) in E:\My Documents\Visual Studio Projects\TheShop\TheShop\Client.cs:line 22
+[2,5,GetArticleIDs:1,2] => Could not order article
 Article with ID: 1 not found.
 Article with ID: 2 not found.
 

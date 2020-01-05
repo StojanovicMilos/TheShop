@@ -16,14 +16,10 @@ namespace TheShop
 
         public void DoShopping(OrderAndSellRequest orderAndSellRequest, IEnumerable<int> getArticleIds)
         {
-            try
+            OrderAndSellArticleResult result = _shopService.OrderAndSellArticle(orderAndSellRequest);
+            if (!result.Successful)
             {
-                //order and sell
-                _shopService.OrderAndSellArticle(orderAndSellRequest);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
+                _clientLogger.WriteLine(result.Message);
             }
 
             foreach (var articleId in getArticleIds)

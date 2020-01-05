@@ -16,45 +16,28 @@ namespace TheShop
 	        _supplier = supplier ?? throw new ArgumentNullException(nameof(supplier));
 	    }
 
-		public void OrderAndSellArticle(OrderAndSellRequest orderAndSellRequest)
-		{
-		    int id = orderAndSellRequest.OrderAndSellArticleId;
-		    int buyerId = orderAndSellRequest.BuyerId;
+	    public OrderAndSellArticleResult OrderAndSellArticle(OrderAndSellRequest orderAndSellRequest)
+        {
+            if (orderAndSellRequest == null) throw new ArgumentNullException(nameof(orderAndSellRequest));
 
-			#region ordering article
+            Article article = OrderArticle(orderAndSellRequest);
+            return article == null ? OrderAndSellArticleResult.Failure("Could not order article") : SellArticle(article, orderAndSellRequest);
+        }
 
-		    Article article = _supplier.OrderArticle(id);
+        private Article OrderArticle(OrderAndSellRequest orderAndSellRequest) => _supplier.OrderArticle(orderAndSellRequest.OrderAndSellArticleId);
 
-			#endregion
+	    private OrderAndSellArticleResult SellArticle(Article article, OrderAndSellRequest orderAndSellRequest)
+	    {
+	        if (article == null) throw new ArgumentNullException(nameof(article));
+	        if (orderAndSellRequest == null) throw new ArgumentNullException(nameof(orderAndSellRequest));
+	        _logger.Debug("Trying to sell article with ID = " + orderAndSellRequest.OrderAndSellArticleId);
+	        DateTime soldDate = DateTime.Now;
+	        article.Sell(soldDate, orderAndSellRequest.BuyerId);
+	        _databaseDriver.Save(article);
+	        _logger.Info("Article with ID = " + orderAndSellRequest.OrderAndSellArticleId + " is sold.");
+	        return OrderAndSellArticleResult.Success();
+	    }
 
-			#region selling article
-
-			if (article == null)
-			{
-				throw new Exception("Could not order article");
-			}
-
-			_logger.Debug("Trying to sell article with ID = " + id);
-
-			article.IsSold = true;
-			article.SoldDate = DateTime.Now;
-			article.BuyerUserId = buyerId;
-
-			try
-			{
-				_databaseDriver.Save(article);
-				_logger.Info("Article with ID = " + id + " is sold.");
-			}
-			catch (Exception)
-			{
-				string errorMessage = "Could not save article with ID = " + id;
-				_logger.Error(errorMessage);
-				throw new Exception(errorMessage);
-			}
-
-			#endregion
-		}
-
-		public Article GetArticleBy(int articleId) => _databaseDriver.GetArticleBy(articleId);
+	    public Article GetArticleBy(int articleId) => _databaseDriver.GetArticleBy(articleId);
 	}
 }

@@ -10,5 +10,12 @@ namespace TheShop.Models
 		public bool IsSold { get; set; }
 		public DateTime SoldDate { get; set; }
 		public int BuyerUserId { get; set; }
+
+	    public void Sell(DateTime soldDate, int buyerId)
+	    {
+	        IsSold = true;
+	        SoldDate = soldDate;
+	        BuyerUserId = buyerId;
+	    }
 	}
 }
