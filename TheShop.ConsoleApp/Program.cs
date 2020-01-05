@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TheShop.BL.Article;
 using TheShop.BL.ArticleSeller;
 using TheShop.BL.ArticleService;
@@ -15,11 +16,11 @@ namespace TheShop.ConsoleApp
         {
             Client client = GetDefaultClient();
 
-            SellRequest sellRequest = new SellRequest(1, 10);
+            SellRequest sellRequest = new SellRequest(1, 10, DateTime.Now);
             List<int> getArticleIds = new List<int> { 1, 12 };
             client.DoShopping(sellRequest, getArticleIds);
 
-            System.Console.ReadKey();
+            Console.ReadKey();
         }
 
         public static Client GetDefaultClient()

@@ -17,8 +17,7 @@ namespace TheShop.BL.ArticleSeller
             if (article == null) throw new ArgumentNullException(nameof(article));
             if (sellRequest == null) throw new ArgumentNullException(nameof(sellRequest));
 
-            DateTime soldDate = DateTime.Now;
-            var articleSellResult = article.Sell(soldDate, sellRequest.BuyerId);
+            var articleSellResult = article.Sell(sellRequest.SoldDate, sellRequest.BuyerId);
             if (!articleSellResult.Successful)
                 return articleSellResult;
 
