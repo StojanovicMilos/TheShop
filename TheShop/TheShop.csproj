@@ -44,11 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArticleSeller.cs" />
+    <Compile Include="ArticleService.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="ConsoleClientLogger.cs" />
     <Compile Include="DatabaseDriver.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="IArticleSeller.cs" />
+    <Compile Include="IArticleService.cs" />
     <Compile Include="IClientLogger.cs" />
     <Compile Include="IDatabaseDriver.cs" />
     <Compile Include="IShopService.cs" />

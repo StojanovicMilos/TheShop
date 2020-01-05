@@ -7,15 +7,20 @@ namespace TheShop
     {
         private readonly IShopService _shopService;
         private readonly IClientLogger _clientLogger;
+        private readonly IArticleService _articleService;
 
-        public Client(IShopService shopService, IClientLogger clientLogger)
+        public Client(IShopService shopService, IClientLogger clientLogger, IArticleService articleService)
         {
             _shopService = shopService ?? throw new ArgumentNullException(nameof(shopService));
             _clientLogger = clientLogger ?? throw new ArgumentNullException(nameof(clientLogger));
+            _articleService = articleService ?? throw new ArgumentNullException(nameof(articleService));
         }
 
         public void DoShopping(OrderAndSellRequest orderAndSellRequest, IEnumerable<int> getArticleIds)
         {
+            if (orderAndSellRequest == null) throw new ArgumentNullException(nameof(orderAndSellRequest));
+            if (getArticleIds == null) throw new ArgumentNullException(nameof(getArticleIds));
+
             OrderAndSellArticleResult result = _shopService.OrderAndSellArticle(orderAndSellRequest);
             if (!result.Successful)
             {
@@ -24,7 +29,7 @@ namespace TheShop
 
             foreach (var articleId in getArticleIds)
             {
-                var article = _shopService.GetArticleBy(articleId);
+                var article = _articleService.GetArticleBy(articleId);
                 if (article == null)
                 {
                     _clientLogger.WriteLine("Article with ID: " + articleId + " not found.");

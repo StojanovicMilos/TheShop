@@ -20,9 +20,7 @@ namespace TheShop
         public static Client GetDefaultClient()
         {
             var databaseDriver = new DatabaseDriver();
-            return new Client(new ShopService(
-                    databaseDriver,
-                    new Suppliers(new List<ISupplier>
+            return new Client(new ShopService(new Suppliers(new List<ISupplier>
                     {
                         new Supplier(new List<Article>
                         {
@@ -53,7 +51,7 @@ namespace TheShop
                         })
                     }),
                     new LoggingArticleSeller(new ConsoleShopServiceLogger(), new ArticleSeller(databaseDriver))),
-                new ConsoleClientLogger());
+                new ConsoleClientLogger(), new ArticleService(databaseDriver));
         }
     }
 }

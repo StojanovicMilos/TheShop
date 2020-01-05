@@ -1,10 +1,7 @@
-﻿using TheShop.Models;
-
-namespace TheShop
+﻿namespace TheShop
 {
-	public interface IShopService
+    public interface IShopService
 	{
 	    OrderAndSellArticleResult OrderAndSellArticle(OrderAndSellRequest orderAndSellRequest);
-		Article GetArticleBy(int articleId);
 	}
 }
