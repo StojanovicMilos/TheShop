@@ -24,18 +24,18 @@ namespace TheShop.BL.SuppliersService
                 .Where(s => s.ArticleAvailableInInventory(articleId))
                 .WithMinimum(s =>
                 {
-                    var orderArticleResult = s.OrderArticle(articleId);
+                    var orderArticleResult = s.GetArticle(articleId);
                     return orderArticleResult.Successful ? orderArticleResult.ReturnValue.ArticlePrice : int.MaxValue;
                 });
 
-        public OperationResult<Article.Article> OrderArticle(int articleId)
+        public OperationResult<Article.Article> GetArticle(int articleId)
         {
             if (articleId <= 0) throw new ArgumentOutOfRangeException(nameof(articleId));
 
             var supplierWithMinimumPriceForArticle = GetSupplierWithMinimumPriceFor(articleId);
             return supplierWithMinimumPriceForArticle == null
-                ? OperationResult<Article.Article>.Failure("No supplier has the article")
-                : OperationResult<Article.Article>.SuccessWithValue(supplierWithMinimumPriceForArticle.OrderArticle(articleId).ReturnValue);
+                ? OperationResult<Article.Article>.Failure("Could not order article")
+                : OperationResult<Article.Article>.SuccessWithValue(supplierWithMinimumPriceForArticle.GetArticle(articleId).ReturnValue);
         }
     }
 }

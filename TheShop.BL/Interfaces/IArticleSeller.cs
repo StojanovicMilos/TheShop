@@ -2,6 +2,6 @@
 {
     public interface IArticleSeller
     {
-        OperationResult<Article.Article> SellArticle(Article.Article article, OrderAndSellRequest orderAndSellRequest);
+        OperationResult<Article.Article> SellArticle(Article.Article article, SellRequest sellRequest);
     }
 }

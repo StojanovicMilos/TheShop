@@ -2,6 +2,6 @@
 {
     public interface IShopService
 	{
-	    OperationResult<Article.Article> OrderAndSellArticle(OrderAndSellRequest orderAndSellRequest);
+	    OperationResult<Article.Article> SellArticle(SellRequest sellRequest);
 	}
 }

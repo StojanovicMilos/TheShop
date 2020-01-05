@@ -20,12 +20,12 @@ namespace TheShop.IntegrationTests
                                     + Environment.NewLine + "Info: Article with ID = 1 is sold."
                                     + Environment.NewLine + "Found article with ID: 1"
                                     + Environment.NewLine + "Article with ID: 12 not found." + Environment.NewLine;
-            OrderAndSellRequest orderAndSellRequest = new OrderAndSellRequest(1, 10);
+            SellRequest sellRequest = new SellRequest(1, 10);
             List<int> getArticleIds = new List<int> {1, 12};
             Client client = Program.GetDefaultClient();
 
             //Exercise
-            client.DoShopping(orderAndSellRequest, getArticleIds);
+            client.DoShopping(sellRequest, getArticleIds);
 
             //Verify
             Assert.Equal(expectedOutput, consoleOutput.GetOutput());
@@ -51,7 +51,7 @@ namespace TheShop.IntegrationTests
         {
             using (var consoleOutput = new ConsoleOutput())
             {
-                Program.GetDefaultClient().DoShopping(new OrderAndSellRequest (orderAndSellArticleId,buyerId), getArticleIds);
+                Program.GetDefaultClient().DoShopping(new SellRequest (orderAndSellArticleId,buyerId), getArticleIds);
                 return consoleOutput.GetOutput();
             }
         }

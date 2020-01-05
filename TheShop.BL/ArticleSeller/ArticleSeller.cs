@@ -12,13 +12,13 @@ namespace TheShop.BL.ArticleSeller
             _databaseDriver = databaseDriver ?? throw new ArgumentNullException(nameof(databaseDriver));
         }
 
-        public OperationResult<Article.Article> SellArticle(Article.Article article, OrderAndSellRequest orderAndSellRequest)
+        public OperationResult<Article.Article> SellArticle(Article.Article article, SellRequest sellRequest)
         {
             if (article == null) throw new ArgumentNullException(nameof(article));
-            if (orderAndSellRequest == null) throw new ArgumentNullException(nameof(orderAndSellRequest));
+            if (sellRequest == null) throw new ArgumentNullException(nameof(sellRequest));
 
             DateTime soldDate = DateTime.Now;
-            var articleSellResult = article.Sell(soldDate, orderAndSellRequest.BuyerId);
+            var articleSellResult = article.Sell(soldDate, sellRequest.BuyerId);
             if (!articleSellResult.Successful)
                 return articleSellResult;
 

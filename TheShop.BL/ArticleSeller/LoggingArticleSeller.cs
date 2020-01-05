@@ -14,14 +14,14 @@ namespace TheShop.BL.ArticleSeller
             _articleSeller = articleSeller ?? throw new ArgumentNullException(nameof(articleSeller));
         }
 
-        public OperationResult<Article.Article> SellArticle(Article.Article article, OrderAndSellRequest orderAndSellRequest)
+        public OperationResult<Article.Article> SellArticle(Article.Article article, SellRequest sellRequest)
         {
             if (article == null) throw new ArgumentNullException(nameof(article));
-            if (orderAndSellRequest == null) throw new ArgumentNullException(nameof(orderAndSellRequest));
+            if (sellRequest == null) throw new ArgumentNullException(nameof(sellRequest));
 
-            _logger.Debug("Trying to sell article with ID = " + orderAndSellRequest.OrderAndSellArticleId);
-            var result = _articleSeller.SellArticle(article, orderAndSellRequest);
-            _logger.Info("Article with ID = " + orderAndSellRequest.OrderAndSellArticleId + " is sold.");
+            _logger.Debug("Trying to sell article with ID = " + sellRequest.SellArticleId);
+            var result = _articleSeller.SellArticle(article, sellRequest);
+            _logger.Info("Article with ID = " + sellRequest.SellArticleId + " is sold.");
             return result;
         }
     }

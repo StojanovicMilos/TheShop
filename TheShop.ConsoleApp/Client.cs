@@ -18,12 +18,12 @@ namespace TheShop.ConsoleApp
             _articleService = articleService ?? throw new ArgumentNullException(nameof(articleService));
         }
 
-        public void DoShopping(OrderAndSellRequest orderAndSellRequest, IEnumerable<int> getArticleIds)
+        public void DoShopping(SellRequest sellRequest, IEnumerable<int> getArticleIds)
         {
-            if (orderAndSellRequest == null) throw new ArgumentNullException(nameof(orderAndSellRequest));
+            if (sellRequest == null) throw new ArgumentNullException(nameof(sellRequest));
             if (getArticleIds == null) throw new ArgumentNullException(nameof(getArticleIds));
 
-            OperationResult<Article> orderAndSellResult = _shopService.OrderAndSellArticle(orderAndSellRequest);
+            OperationResult<Article> orderAndSellResult = _shopService.SellArticle(sellRequest);
             if (!orderAndSellResult.Successful)
             {
                 _clientLogger.WriteLine(orderAndSellResult.Message);

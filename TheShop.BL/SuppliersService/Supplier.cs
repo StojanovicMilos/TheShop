@@ -21,7 +21,7 @@ namespace TheShop.BL.SuppliersService
             return _articles.Any(a => a.Id == articleId && !a.IsSold);
         }
 
-        public OperationResult<Article.Article> OrderArticle(int articleId)
+        public OperationResult<Article.Article> GetArticle(int articleId)
         {
             if (articleId <= 0) throw new ArgumentOutOfRangeException(nameof(articleId));
 

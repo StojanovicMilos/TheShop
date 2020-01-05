@@ -3,6 +3,6 @@
 	public interface ISupplier
 	{
 		bool ArticleAvailableInInventory(int articleId);
-	    OperationResult<Article.Article> OrderArticle(int articleId);
+	    OperationResult<Article.Article> GetArticle(int articleId);
 	}
 }
