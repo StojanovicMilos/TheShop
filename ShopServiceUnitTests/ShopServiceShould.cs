@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Moq;
 using TheShop;
-using TheShop.Suppliers;
+using TheShop.Models;
 using Xunit;
 
 namespace ShopServiceUnitTests
@@ -15,7 +15,36 @@ namespace ShopServiceUnitTests
             const int articleId = 0;
             Mock<IDatabaseDriver> mockDatabaseDriver = new Mock<IDatabaseDriver>();
             mockDatabaseDriver.Setup(mock => mock.GetArticleBy(articleId));
-            ShopService shopService = new ShopService(mockDatabaseDriver.Object, new ConsoleShopServiceLogger(), new List<ISupplier> {new Supplier1(), new Supplier2(), new Supplier3()});
+            ShopService shopService = new ShopService(mockDatabaseDriver.Object, new ConsoleShopServiceLogger(), new Suppliers(new List<ISupplier>
+            {
+                new Supplier(new List<Article>
+                {
+                    new Article
+                    {
+                        ArticlePrice = 458,
+                        Id = 1,
+                        NameOfArticle = "Article from supplier1"
+                    }
+                }),
+                new Supplier(new List<Article>
+                {
+                    new Article
+                    {
+                        ArticlePrice = 459,
+                        Id = 1,
+                        NameOfArticle = "Article from supplier2"
+                    }
+                }),
+                new Supplier(new List<Article>
+                {
+                    new Article
+                    {
+                        ArticlePrice = 460,
+                        Id = 1,
+                        NameOfArticle = "Article from supplier3"
+                    }
+                })
+            }));
 
             //Act
             shopService.GetArticleBy(articleId);

@@ -37,10 +37,9 @@ namespace TheShop.IntegrationTests
         public void OutputTextToConsoleForOtherUseCases()
         {
             //Arrange
-            int[] orderAndSellArticleIds = Enumerable.Range(1, 10).ToArray();
+            int[] orderAndSellArticleIds = Enumerable.Range(1, 2).ToArray();
             int[] buyerIds = Enumerable.Range(1, 5).ToArray();
-            TestList<TestList<int>> getArticleIds = new TestList<TestList<int>> {new TestList<int>(Enumerable.Range(1, 10))};
-            
+            TestList<TestList<int>> getArticleIds = new TestList<TestList<int>> {new TestList<int>(Enumerable.Range(1, 2))};
 
             //Act+Assert
             CombinationApprovals.VerifyAllCombinations(DoShoppingWithOutput, orderAndSellArticleIds, buyerIds, getArticleIds);

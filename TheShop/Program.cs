@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using TheShop.Suppliers;
+using TheShop.Models;
 
 namespace TheShop
 {
@@ -20,10 +20,36 @@ namespace TheShop
         public static Client GetDefaultClient() => new Client(new ShopService(
                 new DatabaseDriver(),
                 new ConsoleShopServiceLogger(),
-                new List<ISupplier>
+                new Suppliers(new List<ISupplier>
                 {
-                    new Supplier1(), new Supplier2(), new Supplier3()
-                }),
+                    new Supplier(new List<Article>
+                    {
+                        new Article
+                        {
+                            ArticlePrice = 458,
+                            Id = 1,
+                            NameOfArticle = "Article from supplier1"
+                        }
+                    }),
+                    new Supplier(new List<Article>
+                    {
+                        new Article
+                        {
+                            ArticlePrice = 459,
+                            Id = 1,
+                            NameOfArticle = "Article from supplier2"
+                        }
+                    }),
+                    new Supplier(new List<Article>
+                    {
+                        new Article
+                        {
+                            ArticlePrice = 460,
+                            Id = 1,
+                            NameOfArticle = "Article from supplier3"
+                        }
+                    })
+                })),
             new ConsoleClientLogger());
     }
 }

@@ -1,24 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using TheShop.Models;
-using TheShop.Suppliers;
 
 namespace TheShop
 {
-	public class ShopService : IShopService
+    public class ShopService : IShopService
 	{
 		private readonly IDatabaseDriver _databaseDriver;
 		private readonly IShopServiceLogger _logger;
-		private readonly List<ISupplier> _suppliers;
+		private readonly ISupplier _supplier;
 
-	    public ShopService(IDatabaseDriver databaseDriver, IShopServiceLogger logger, List<ISupplier> suppliers)
+	    public ShopService(IDatabaseDriver databaseDriver, IShopServiceLogger logger, ISupplier supplier)
 	    {
-	        if (suppliers == null) throw new ArgumentNullException(nameof(suppliers));
-	        if (suppliers.Count == 0) throw new ArgumentException("Value cannot be an empty collection.", nameof(suppliers));
 	        _databaseDriver = databaseDriver ?? throw new ArgumentNullException(nameof(databaseDriver));
 	        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-	        _suppliers = suppliers;
+	        _supplier = supplier ?? throw new ArgumentNullException(nameof(supplier));
 	    }
 
 		public void OrderAndSellArticle(OrderAndSellRequest orderAndSellRequest)
@@ -28,13 +23,7 @@ namespace TheShop
 
 			#region ordering article
 
-			Article article = null;
-			var articlesInInventory = _suppliers.Where(s => s.ArticleInInventory(id) && !s.GetArticle(id).IsSold).ToArray();
-			if (articlesInInventory.Length > 0)
-			{
-				var minPrice = articlesInInventory.Min(s => s.GetArticle(id).ArticlePrice);
-				article = articlesInInventory.Select(s => s.GetArticle(id)).First(s => s.ArticlePrice == minPrice);
-			}
+		    Article article = _supplier.OrderArticle(id);
 
 			#endregion
 
