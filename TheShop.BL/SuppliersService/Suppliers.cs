@@ -30,6 +30,8 @@ namespace TheShop.BL.SuppliersService
 
         public OperationResult<Article.Article> OrderArticle(int articleId)
         {
+            if (articleId <= 0) throw new ArgumentOutOfRangeException(nameof(articleId));
+
             var supplierWithMinimumPriceForArticle = GetSupplierWithMinimumPriceFor(articleId);
             return supplierWithMinimumPriceForArticle == null
                 ? OperationResult<Article.Article>.Failure("No supplier has the article")

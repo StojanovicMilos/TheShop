@@ -12,8 +12,10 @@ namespace TheShop.BL.ArticleService
             _databaseDriver = databaseDriver ?? throw new ArgumentNullException(nameof(databaseDriver));
         }
 
-        public OperationResult<Article.Article> GetArticleBy(int articleId) => _databaseDriver.GetArticleBy(articleId);
+        public OperationResult<Article.Article> GetArticleBy(int articleId)
+        {
+            if (articleId <= 0) throw new ArgumentOutOfRangeException(nameof(articleId));
+            return _databaseDriver.GetArticleBy(articleId);
+        }
     }
-
-    
 }

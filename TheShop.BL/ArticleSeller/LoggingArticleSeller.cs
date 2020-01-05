@@ -16,6 +16,9 @@ namespace TheShop.BL.ArticleSeller
 
         public OperationResult<Article.Article> SellArticle(Article.Article article, OrderAndSellRequest orderAndSellRequest)
         {
+            if (article == null) throw new ArgumentNullException(nameof(article));
+            if (orderAndSellRequest == null) throw new ArgumentNullException(nameof(orderAndSellRequest));
+
             _logger.Debug("Trying to sell article with ID = " + orderAndSellRequest.OrderAndSellArticleId);
             var result = _articleSeller.SellArticle(article, orderAndSellRequest);
             _logger.Info("Article with ID = " + orderAndSellRequest.OrderAndSellArticleId + " is sold.");

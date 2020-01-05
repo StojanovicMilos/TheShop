@@ -15,7 +15,7 @@ namespace TheShop.ConsoleApp
         {
             Client client = GetDefaultClient();
 
-            OrderAndSellRequest orderAndSellRequest = new OrderAndSellRequest { OrderAndSellArticleId = 1, BuyerId = 10 };
+            OrderAndSellRequest orderAndSellRequest = new OrderAndSellRequest(1, 10);
             List<int> getArticleIds = new List<int> { 1, 12 };
             client.DoShopping(orderAndSellRequest, getArticleIds);
 

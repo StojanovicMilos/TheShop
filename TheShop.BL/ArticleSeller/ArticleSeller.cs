@@ -9,7 +9,7 @@ namespace TheShop.BL.ArticleSeller
 
         public ArticleSeller(IDatabaseDriver databaseDriver)
         {
-            _databaseDriver = databaseDriver;
+            _databaseDriver = databaseDriver ?? throw new ArgumentNullException(nameof(databaseDriver));
         }
 
         public OperationResult<Article.Article> SellArticle(Article.Article article, OrderAndSellRequest orderAndSellRequest)

@@ -20,7 +20,7 @@ namespace TheShop.IntegrationTests
                                     + Environment.NewLine + "Info: Article with ID = 1 is sold."
                                     + Environment.NewLine + "Found article with ID: 1"
                                     + Environment.NewLine + "Article with ID: 12 not found." + Environment.NewLine;
-            OrderAndSellRequest orderAndSellRequest = new OrderAndSellRequest {OrderAndSellArticleId = 1, BuyerId = 10};
+            OrderAndSellRequest orderAndSellRequest = new OrderAndSellRequest(1, 10);
             List<int> getArticleIds = new List<int> {1, 12};
             Client client = Program.GetDefaultClient();
 
@@ -51,7 +51,7 @@ namespace TheShop.IntegrationTests
         {
             using (var consoleOutput = new ConsoleOutput())
             {
-                Program.GetDefaultClient().DoShopping(new OrderAndSellRequest {OrderAndSellArticleId = orderAndSellArticleId, BuyerId = buyerId}, getArticleIds);
+                Program.GetDefaultClient().DoShopping(new OrderAndSellRequest (orderAndSellArticleId,buyerId), getArticleIds);
                 return consoleOutput.GetOutput();
             }
         }

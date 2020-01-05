@@ -11,7 +11,7 @@ namespace TheShop.UnitTests
         public void CallDatabaseDriverOnceWhenGettingArticleById()
         {
             //Arrange
-            const int articleId = 0;
+            const int articleId = 1;
             Mock<IDatabaseDriver> mockDatabaseDriver = new Mock<IDatabaseDriver>();
             mockDatabaseDriver.Setup(mock => mock.GetArticleBy(articleId));
             ArticleService articleService = new ArticleService(mockDatabaseDriver.Object);
