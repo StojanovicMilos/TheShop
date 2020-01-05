@@ -1,7 +1,9 @@
-﻿namespace TheShop
+﻿using TheShop.Models;
+
+namespace TheShop
 {
     public interface IShopService
 	{
-	    OrderAndSellArticleResult OrderAndSellArticle(OrderAndSellRequest orderAndSellRequest);
+	    OperationResult<Article> OrderAndSellArticle(OrderAndSellRequest orderAndSellRequest);
 	}
 }

@@ -4,6 +4,6 @@ namespace TheShop
 {
     public interface IArticleService
     {
-        Article GetArticleBy(int articleId);
+        OperationResult<Article> GetArticleBy(int articleId);
     }
 }

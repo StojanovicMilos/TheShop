@@ -58,7 +58,7 @@
     <Compile Include="IShopServiceLogger.cs" />
     <Compile Include="LoggingArticleSeller.cs" />
     <Compile Include="Models\Article.cs" />
-    <Compile Include="OrderAndSellArticleResult.cs" />
+    <Compile Include="OperationResult.cs" />
     <Compile Include="OrderAndSellRequest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

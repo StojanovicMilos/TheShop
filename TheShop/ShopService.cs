@@ -5,21 +5,21 @@ namespace TheShop
 {
     public class ShopService : IShopService
 	{
-	    private readonly ISupplier _supplier;
+	    private readonly Suppliers _supplier;
 	    private readonly IArticleSeller _articleSeller;
 
-	    public ShopService(ISupplier supplier, IArticleSeller articleSeller)
+	    public ShopService(Suppliers supplier, IArticleSeller articleSeller)
 	    {
 	        _supplier = supplier ?? throw new ArgumentNullException(nameof(supplier));
 	        _articleSeller = articleSeller ?? throw new ArgumentNullException(nameof(articleSeller));
 	    }
 
-	    public OrderAndSellArticleResult OrderAndSellArticle(OrderAndSellRequest orderAndSellRequest)
+	    public OperationResult<Article> OrderAndSellArticle(OrderAndSellRequest orderAndSellRequest)
         {
             if (orderAndSellRequest == null) throw new ArgumentNullException(nameof(orderAndSellRequest));
 
-            Article article = _supplier.OrderArticle(orderAndSellRequest.OrderAndSellArticleId);
-            return article == null ? OrderAndSellArticleResult.Failure("Could not order article") : _articleSeller.SellArticle(article, orderAndSellRequest);
+            OperationResult<Article> orderResult = _supplier.OrderArticle(orderAndSellRequest.OrderAndSellArticleId);
+            return orderResult.Successful ? _articleSeller.SellArticle(orderResult.ReturnValue, orderAndSellRequest) : OperationResult<Article>.Failure("Could not order article");
         }
 	}
 }

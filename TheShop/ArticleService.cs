@@ -12,6 +12,6 @@ namespace TheShop
             _databaseDriver = databaseDriver ?? throw new ArgumentNullException(nameof(databaseDriver));
         }
 
-        public Article GetArticleBy(int articleId) => _databaseDriver.GetArticleBy(articleId);
+        public OperationResult<Article> GetArticleBy(int articleId) => _databaseDriver.GetArticleBy(articleId);
     }
 }

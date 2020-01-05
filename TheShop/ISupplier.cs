@@ -4,7 +4,7 @@ namespace TheShop
 {
 	public interface ISupplier
 	{
-		bool ArticleInInventory(int articleId);
-		Article OrderArticle(int articleId);
+		bool ArticleAvailableInInventory(int articleId);
+	    OperationResult<Article> OrderArticle(int articleId);
 	}
 }

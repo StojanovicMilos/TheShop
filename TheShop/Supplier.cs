@@ -14,8 +14,13 @@ namespace TheShop
             _articles = articles ?? throw new ArgumentNullException(nameof(articles));
         }
 
-        public bool ArticleInInventory(int articleId) => _articles.Any(a => a.Id == articleId);
+        public bool ArticleAvailableInInventory(int articleId) => _articles.Any(a => a.Id == articleId && !a.IsSold);
 
-        public Article OrderArticle(int articleId) => _articles.FirstOrDefault(a => a.Id == articleId);
+        public OperationResult<Article> OrderArticle(int articleId)
+        {
+            if (ArticleAvailableInInventory(articleId))
+                return OperationResult<Article>.SuccessWithValue(_articles.First(a => a.Id == articleId));
+            return OperationResult<Article>.Failure("article does not exist");
+        }
     }
 }

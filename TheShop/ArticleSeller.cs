@@ -12,16 +12,14 @@ namespace TheShop
             _databaseDriver = databaseDriver;
         }
 
-        public OrderAndSellArticleResult SellArticle(Article article, OrderAndSellRequest orderAndSellRequest)
+        public OperationResult<Article> SellArticle(Article article, OrderAndSellRequest orderAndSellRequest)
         {
             if (article == null) throw new ArgumentNullException(nameof(article));
             if (orderAndSellRequest == null) throw new ArgumentNullException(nameof(orderAndSellRequest));
-            
+
             DateTime soldDate = DateTime.Now;
             article.Sell(soldDate, orderAndSellRequest.BuyerId);
-            _databaseDriver.Save(article);
-            
-            return OrderAndSellArticleResult.Success();
+            return _databaseDriver.Save(article);
         }
     }
 }

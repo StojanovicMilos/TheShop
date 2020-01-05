@@ -4,6 +4,6 @@ namespace TheShop
 {
     public interface IArticleSeller
     {
-        OrderAndSellArticleResult SellArticle(Article article, OrderAndSellRequest orderAndSellRequest);
+        OperationResult<Article> SellArticle(Article article, OrderAndSellRequest orderAndSellRequest);
     }
 }

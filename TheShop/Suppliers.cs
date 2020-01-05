@@ -16,13 +16,23 @@ namespace TheShop
             _suppliers = suppliers;
         }
 
-        public bool ArticleInInventory(int articleId) => _suppliers.Any(s => s.ArticleInInventory(articleId));
+        public bool ArticleAvailableInInventory(int articleId) => _suppliers.Any(s => s.ArticleAvailableInInventory(articleId));
 
         private ISupplier GetSupplierWithMinimumPriceFor(int articleId) =>
-            _suppliers.Where(s => s.ArticleInInventory(articleId) && !s.OrderArticle(articleId).IsSold)
-                .WithMinimum(s => s.OrderArticle(articleId).ArticlePrice);
+            _suppliers
+                .Where(s => s.ArticleAvailableInInventory(articleId))
+                .WithMinimum(s =>
+                {
+                    var orderArticleResult = s.OrderArticle(articleId);
+                    return orderArticleResult.Successful ? orderArticleResult.ReturnValue.ArticlePrice : int.MaxValue;
+                });
 
-        public Article OrderArticle(int articleId) =>
-            GetSupplierWithMinimumPriceFor(articleId)?.OrderArticle(articleId);
+        public OperationResult<Article> OrderArticle(int articleId)
+        {
+            var supplierWithMinimumPriceForArticle = GetSupplierWithMinimumPriceFor(articleId);
+            return supplierWithMinimumPriceForArticle == null
+                ? OperationResult<Article>.Failure("No supplier has the article")
+                : OperationResult<Article>.SuccessWithValue(supplierWithMinimumPriceForArticle.OrderArticle(articleId).ReturnValue);
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TheShop.Models;
 
 namespace TheShop
 {
@@ -21,22 +22,22 @@ namespace TheShop
             if (orderAndSellRequest == null) throw new ArgumentNullException(nameof(orderAndSellRequest));
             if (getArticleIds == null) throw new ArgumentNullException(nameof(getArticleIds));
 
-            OrderAndSellArticleResult result = _shopService.OrderAndSellArticle(orderAndSellRequest);
-            if (!result.Successful)
+            OperationResult<Article> orderAndSellResult = _shopService.OrderAndSellArticle(orderAndSellRequest);
+            if (!orderAndSellResult.Successful)
             {
-                _clientLogger.WriteLine(result.Message);
+                _clientLogger.WriteLine(orderAndSellResult.Message);
             }
 
             foreach (var articleId in getArticleIds)
             {
-                var article = _articleService.GetArticleBy(articleId);
-                if (article == null)
+                var getArticleResult = _articleService.GetArticleBy(articleId);
+                if (getArticleResult.Successful)
                 {
-                    _clientLogger.WriteLine("Article with ID: " + articleId + " not found.");
+                    _clientLogger.WriteLine("Found article with ID: " + articleId);
                 }
                 else
                 {
-                    _clientLogger.WriteLine("Found article with ID: " + article.Id);
+                    _clientLogger.WriteLine("Article with ID: " + articleId + " not found.");
                 }
             }
         }

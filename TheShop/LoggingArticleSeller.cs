@@ -14,7 +14,7 @@ namespace TheShop
             _articleSeller = articleSeller ?? throw new ArgumentNullException(nameof(articleSeller));
         }
 
-        public OrderAndSellArticleResult SellArticle(Article article, OrderAndSellRequest orderAndSellRequest)
+        public OperationResult<Article> SellArticle(Article article, OrderAndSellRequest orderAndSellRequest)
         {
             _logger.Debug("Trying to sell article with ID = " + orderAndSellRequest.OrderAndSellArticleId);
             var result = _articleSeller.SellArticle(article, orderAndSellRequest);
