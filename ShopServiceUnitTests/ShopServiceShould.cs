@@ -15,7 +15,7 @@ namespace ShopServiceUnitTests
             const int articleId = 0;
             Mock<IDatabaseDriver> mockDatabaseDriver = new Mock<IDatabaseDriver>();
             mockDatabaseDriver.Setup(mock => mock.GetArticleBy(articleId));
-            ShopService shopService = new ShopService(mockDatabaseDriver.Object, new ConsoleShopServiceLogger(), new Suppliers(new List<ISupplier>
+            ShopService shopService = new ShopService(mockDatabaseDriver.Object, new Suppliers(new List<ISupplier>
             {
                 new Supplier(new List<Article>
                 {
@@ -44,7 +44,7 @@ namespace ShopServiceUnitTests
                         NameOfArticle = "Article from supplier3"
                     }
                 })
-            }));
+            }), new LoggingArticleSeller(new ConsoleShopServiceLogger(), new ArticleSeller(mockDatabaseDriver.Object)));
 
             //Act
             shopService.GetArticleBy(articleId);

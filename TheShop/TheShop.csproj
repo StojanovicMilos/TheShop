@@ -43,15 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArticleSeller.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="ConsoleClientLogger.cs" />
     <Compile Include="DatabaseDriver.cs" />
     <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="IArticleSeller.cs" />
     <Compile Include="IClientLogger.cs" />
     <Compile Include="IDatabaseDriver.cs" />
     <Compile Include="IShopService.cs" />
     <Compile Include="ConsoleShopServiceLogger.cs" />
     <Compile Include="IShopServiceLogger.cs" />
+    <Compile Include="LoggingArticleSeller.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="OrderAndSellArticleResult.cs" />
     <Compile Include="OrderAndSellRequest.cs" />
