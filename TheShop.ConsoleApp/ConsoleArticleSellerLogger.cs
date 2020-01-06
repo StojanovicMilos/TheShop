@@ -3,7 +3,7 @@ using TheShop.BL.Interfaces;
 
 namespace TheShop.ConsoleApp
 {
-    public class ConsoleShopServiceLogger : IShopServiceLogger
+    public class ConsoleArticleSellerLogger : IArticleSellerLogger
     {
         public void Debug(string message) => Console.WriteLine("Debug: " + message);
 

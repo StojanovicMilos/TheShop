@@ -5,10 +5,10 @@ namespace TheShop.BL.ArticleSeller
 {
     public class LoggingArticleSeller : IArticleSeller
     {
-        private readonly IShopServiceLogger _logger;
+        private readonly IArticleSellerLogger _logger;
         private readonly IArticleSeller _articleSeller;
 
-        public LoggingArticleSeller(IShopServiceLogger logger, IArticleSeller articleSeller)
+        public LoggingArticleSeller(IArticleSellerLogger logger, IArticleSeller articleSeller)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _articleSeller = articleSeller ?? throw new ArgumentNullException(nameof(articleSeller));

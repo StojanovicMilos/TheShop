@@ -50,7 +50,7 @@
     <Compile Include="Interfaces\IClientLogger.cs" />
     <Compile Include="Interfaces\IDatabaseDriver.cs" />
     <Compile Include="Interfaces\IShopService.cs" />
-    <Compile Include="Interfaces\IShopServiceLogger.cs" />
+    <Compile Include="Interfaces\IArticleSellerLogger.cs" />
     <Compile Include="Interfaces\ISupplier.cs" />
     <Compile Include="ArticleSeller\LoggingArticleSeller.cs" />
     <Compile Include="Interfaces\OperationResult.cs" />

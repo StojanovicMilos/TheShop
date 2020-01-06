@@ -32,7 +32,7 @@ namespace TheShop.ConsoleApp
                         new Supplier(new List<Article> {new Article(1, "Article from supplier2", 459)}),
                         new Supplier(new List<Article> {new Article(1, "Article from supplier3", 460)})
                     }),
-                    new LoggingArticleSeller(new ConsoleShopServiceLogger(), new ArticleSeller(databaseDriver))),
+                    new LoggingArticleSeller(new ConsoleArticleSellerLogger(), new ArticleSeller(databaseDriver))),
                 new ConsoleClientLogger(), new ArticleService(databaseDriver));
         }
     }
