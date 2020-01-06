@@ -18,7 +18,7 @@ namespace TheShop.BL.ShopService
         {
             if (sellRequest == null) throw new ArgumentNullException(nameof(sellRequest));
 
-            OperationResult<Article.Article> orderResult = _supplier.GetArticle(sellRequest.SellArticleId);
+            OperationResult<Article.Article> orderResult = _supplier.GetArticle(sellRequest);
             return orderResult.Successful ? _articleSeller.SellArticle(orderResult.ReturnValue, sellRequest) : orderResult;
         }
 	}

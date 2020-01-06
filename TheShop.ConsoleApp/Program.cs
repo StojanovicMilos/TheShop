@@ -16,7 +16,7 @@ namespace TheShop.ConsoleApp
         {
             Client client = GetDefaultClient();
 
-            SellRequest sellRequest = new SellRequest(1, 10, DateTime.Now);
+            SellRequest sellRequest = new SellRequest(1, 10, DateTime.Now, 458);
             List<int> getArticleIds = new List<int> { 1, 12 };
             client.DoShopping(sellRequest, getArticleIds);
 

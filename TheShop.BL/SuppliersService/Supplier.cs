@@ -21,12 +21,20 @@ namespace TheShop.BL.SuppliersService
             return _articles.Any(a => a.Id == articleId && !a.IsSold);
         }
 
-        public OperationResult<Article.Article> GetArticle(int articleId)
+        public bool ArticleAvailableInInventoryForPrice(int articleId, int maximumPrice)
         {
             if (articleId <= 0) throw new ArgumentOutOfRangeException(nameof(articleId));
+            if (maximumPrice <= 0) throw new ArgumentOutOfRangeException(nameof(maximumPrice));
 
-            return ArticleAvailableInInventory(articleId)
-                ? OperationResult<Article.Article>.SuccessWithValue(_articles.First(a => a.Id == articleId))
+            return _articles.Any(a => a.Id == articleId && !a.IsSold && a.ArticlePrice <= maximumPrice);
+        }
+
+        public OperationResult<Article.Article> GetArticle(SellRequest sellRequest)
+        {
+            if (sellRequest == null) throw new ArgumentNullException(nameof(sellRequest));
+
+            return ArticleAvailableInInventory(sellRequest.SellArticleId)
+                ? OperationResult<Article.Article>.SuccessWithValue(_articles.First(a => a.Id == sellRequest.SellArticleId))
                 : OperationResult<Article.Article>.Failure("article does not exist");
         }
     }
