@@ -1,5 +1,6 @@
 ﻿using System;
-using TheShop.BL.Interfaces;
+using TheShop.BL.Interfaces.BL;
+using TheShop.BL.Interfaces.Utility;
 
 namespace TheShop.BL.ArticleSeller
 {

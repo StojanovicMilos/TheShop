@@ -38,23 +38,23 @@
     <Compile Include="Article\Article.cs" />
     <Compile Include="ArticleSeller\ArticleSeller.cs" />
     <Compile Include="ArticleService\ArticleService.cs" />
+    <Compile Include="Interfaces\DAL\IArticleSellerDatabaseDriver.cs" />
+    <Compile Include="Interfaces\DAL\IArticleServiceDatabaseDriver.cs" />
     <Compile Include="Utility\EnumerableExtensions.cs" />
-    <Compile Include="Interfaces\IArticleSeller.cs" />
-    <Compile Include="Interfaces\IArticleService.cs" />
-    <Compile Include="Interfaces\IDatabaseDriver.cs" />
-    <Compile Include="Interfaces\IShopService.cs" />
-    <Compile Include="Interfaces\IArticleSellerLogger.cs" />
-    <Compile Include="Interfaces\ISupplier.cs" />
+    <Compile Include="Interfaces\BL\IArticleSeller.cs" />
+    <Compile Include="Interfaces\BL\IArticleService.cs" />
+    <Compile Include="Interfaces\DAL\IDatabaseDriver.cs" />
+    <Compile Include="Interfaces\BL\IShopService.cs" />
+    <Compile Include="Interfaces\BL\IArticleSellerLogger.cs" />
+    <Compile Include="Interfaces\BL\ISupplier.cs" />
     <Compile Include="ArticleSeller\LoggingArticleSeller.cs" />
-    <Compile Include="Interfaces\OperationResult.cs" />
-    <Compile Include="Interfaces\SellRequest.cs" />
+    <Compile Include="Interfaces\Utility\OperationResult.cs" />
+    <Compile Include="Interfaces\Utility\SellRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShopService\ShopService.cs" />
     <Compile Include="SuppliersService\Supplier.cs" />
     <Compile Include="SuppliersService\Suppliers.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\BL\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

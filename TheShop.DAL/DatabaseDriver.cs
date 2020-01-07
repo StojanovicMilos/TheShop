@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using TheShop.BL.Article;
-using TheShop.BL.Interfaces;
+using TheShop.BL.Interfaces.DAL;
+using TheShop.BL.Interfaces.Utility;
 
 namespace TheShop.DAL
 {

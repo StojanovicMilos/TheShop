@@ -1,4 +1,4 @@
-﻿namespace TheShop.BL.Interfaces
+﻿namespace TheShop.BL.Interfaces.BL
 {
     public interface IArticleSellerLogger
     {

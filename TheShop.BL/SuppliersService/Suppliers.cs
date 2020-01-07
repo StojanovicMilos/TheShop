@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TheShop.BL.Interfaces;
+using TheShop.BL.Interfaces.BL;
+using TheShop.BL.Interfaces.Utility;
 using TheShop.BL.Utility;
 
 namespace TheShop.BL.SuppliersService

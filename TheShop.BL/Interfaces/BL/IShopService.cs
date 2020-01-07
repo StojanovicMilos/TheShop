@@ -1,4 +1,6 @@
-﻿namespace TheShop.BL.Interfaces
+﻿using TheShop.BL.Interfaces.Utility;
+
+namespace TheShop.BL.Interfaces.BL
 {
     public interface IShopService
 	{

@@ -1,6 +1,6 @@
 ﻿using Moq;
 using TheShop.BL.ArticleService;
-using TheShop.BL.Interfaces;
+using TheShop.BL.Interfaces.DAL;
 using Xunit;
 
 namespace TheShop.UnitTests

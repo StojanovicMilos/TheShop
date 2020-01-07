@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TheShop.BL.Interfaces
+namespace TheShop.BL.Interfaces.Utility
 {
     public class SellRequest
     {

@@ -1,5 +1,5 @@
 ﻿using System;
-using TheShop.BL.Interfaces;
+using TheShop.BL.Interfaces.BL;
 
 namespace TheShop.ConsoleApp
 {

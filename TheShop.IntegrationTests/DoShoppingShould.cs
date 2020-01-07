@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ApprovalTests.Combinations;
 using ApprovalTests.Reporters;
-using TheShop.BL.Interfaces;
+using TheShop.BL.Interfaces.Utility;
 using TheShop.ConsoleApp;
 using Xunit;
 
