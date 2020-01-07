@@ -1,4 +1,4 @@
-﻿using TheShop.BL.Interfaces.Utility;
+﻿using TheShop.BL.Interfaces.UtilityClasses;
 
 namespace TheShop.BL.Interfaces.BL
 {

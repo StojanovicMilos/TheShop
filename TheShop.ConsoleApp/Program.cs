@@ -4,7 +4,7 @@ using TheShop.BL.Article;
 using TheShop.BL.ArticleSeller;
 using TheShop.BL.ArticleService;
 using TheShop.BL.Interfaces.BL;
-using TheShop.BL.Interfaces.Utility;
+using TheShop.BL.Interfaces.UtilityClasses;
 using TheShop.BL.ShopService;
 using TheShop.BL.SuppliersService;
 using TheShop.DAL;

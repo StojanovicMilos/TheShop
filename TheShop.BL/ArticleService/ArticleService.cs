@@ -1,7 +1,7 @@
 ﻿using System;
 using TheShop.BL.Interfaces.BL;
 using TheShop.BL.Interfaces.DAL;
-using TheShop.BL.Interfaces.Utility;
+using TheShop.BL.Interfaces.UtilityClasses;
 
 namespace TheShop.BL.ArticleService
 {

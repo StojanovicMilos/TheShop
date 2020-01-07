@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TheShop.BL.Utility
+namespace TheShop.BL.ExtensionMethods
 {
     public static class EnumerableExtensions
     {

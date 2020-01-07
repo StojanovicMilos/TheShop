@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TheShop.BL.Interfaces.Utility
+namespace TheShop.BL.Interfaces.UtilityClasses
 {
     public class OperationResult<T>
     {

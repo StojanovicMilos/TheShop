@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using TheShop.BL.Article;
 using TheShop.BL.Interfaces.BL;
-using TheShop.BL.Interfaces.Utility;
+using TheShop.BL.Interfaces.UtilityClasses;
 
 namespace TheShop.ConsoleApp
 {
