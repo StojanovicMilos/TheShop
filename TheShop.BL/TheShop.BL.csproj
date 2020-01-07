@@ -41,7 +41,6 @@
     <Compile Include="Utility\EnumerableExtensions.cs" />
     <Compile Include="Interfaces\IArticleSeller.cs" />
     <Compile Include="Interfaces\IArticleService.cs" />
-    <Compile Include="Interfaces\IClientLogger.cs" />
     <Compile Include="Interfaces\IDatabaseDriver.cs" />
     <Compile Include="Interfaces\IShopService.cs" />
     <Compile Include="Interfaces\IArticleSellerLogger.cs" />
@@ -53,6 +52,9 @@
     <Compile Include="ShopService\ShopService.cs" />
     <Compile Include="SuppliersService\Supplier.cs" />
     <Compile Include="SuppliersService\Suppliers.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\BL\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

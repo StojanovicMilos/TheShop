@@ -1,4 +1,4 @@
-﻿namespace TheShop.BL.Interfaces
+﻿namespace TheShop.ConsoleApp
 {
     public interface IClientLogger
     {

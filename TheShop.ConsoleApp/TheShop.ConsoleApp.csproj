@@ -40,6 +40,7 @@
     <Compile Include="Client.cs" />
     <Compile Include="ConsoleArticleSellerLogger.cs" />
     <Compile Include="ConsoleClientLogger.cs" />
+    <Compile Include="IClientLogger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
