@@ -22,7 +22,11 @@ namespace TheShop.BL.ArticleSeller
 
             _logger.Debug("Trying to sell article with ID = " + sellRequest.SellArticleId);
             var result = _articleSeller.SellArticle(article, sellRequest);
-            _logger.Info("Article with ID = " + sellRequest.SellArticleId + " is sold.");
+            if (result.Successful)
+            {
+                _logger.Info("Article with ID = " + sellRequest.SellArticleId + " is sold.");
+            }
+
             return result;
         }
     }

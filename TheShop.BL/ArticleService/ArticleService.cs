@@ -17,6 +17,7 @@ namespace TheShop.BL.ArticleService
         public OperationResult<Article.Article> GetArticleBy(int articleId)
         {
             if (articleId <= 0) throw new ArgumentOutOfRangeException(nameof(articleId));
+
             return _databaseDriver.GetArticleBy(articleId);
         }
     }

@@ -28,6 +28,7 @@ namespace TheShop.BL.Article
 	        if (IsSold)
 	            return OperationResult<Article>.Failure($"Article with id {Id} is already sold");
 
+	        IsSold = true;
 	        SoldDate = sellRequest.SoldDate;
 	        BuyerId = sellRequest.BuyerId;
 
