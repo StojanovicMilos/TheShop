@@ -15,26 +15,34 @@ namespace TheShop.BL.SuppliersService
         {
             if (suppliers == null) throw new ArgumentNullException(nameof(suppliers));
             if (suppliers.Count == 0) throw new ArgumentException("Value cannot be an empty collection.", nameof(suppliers));
+
             _suppliers = suppliers;
         }
 
-        public bool ArticleAvailableInInventory(int articleId) => _suppliers.Any(s => s.ArticleAvailableInInventory(articleId));
+        public bool ArticleAvailableInInventory(int articleId)
+        {
+            if (articleId <= 0) throw new ArgumentOutOfRangeException(nameof(articleId));
 
-        public bool ArticleAvailableInInventoryForPrice(int articleId, int maximumPrice) => _suppliers.Any(s => s.ArticleAvailableInInventoryForPrice(articleId, maximumPrice));
+            return _suppliers.Any(s => s.ArticleAvailableInInventory(articleId));
+        }
 
-        private ISupplier GetSupplierWithMinimumPriceFor(SellRequest sellRequest) =>
-            _suppliers
-                .Where(s => s.ArticleAvailableInInventoryForPrice(sellRequest.SellArticleId, sellRequest.MaximumPrice))
-                .WithMinimum(s => s.GetArticle(sellRequest).ReturnValue.ArticlePrice);
+        public bool ArticleAvailableInInventoryForPrice(int articleId, int maximumPrice)
+        {
+            if (articleId <= 0) throw new ArgumentOutOfRangeException(nameof(articleId));
+            if (maximumPrice <= 0) throw new ArgumentOutOfRangeException(nameof(maximumPrice));
+
+            return _suppliers.Any(s => s.ArticleAvailableInInventoryForPrice(articleId, maximumPrice));
+        }
 
         public OperationResult<Article.Article> GetArticle(SellRequest sellRequest)
         {
             if (sellRequest == null) throw new ArgumentNullException(nameof(sellRequest));
 
-            var supplierWithMinimumPriceForArticle = GetSupplierWithMinimumPriceFor(sellRequest);
-            return supplierWithMinimumPriceForArticle == null
-                ? OperationResult<Article.Article>.Failure("Could not order article")
-                : supplierWithMinimumPriceForArticle.GetArticle(sellRequest);
+            return _suppliers.Where(s => s.ArticleAvailableInInventoryForPrice(sellRequest.SellArticleId, sellRequest.MaximumPrice))
+                       .Select(s => s.GetArticle(sellRequest))
+                       .Where(operationResult => operationResult.Successful)
+                       .WithMinimum(operationResult => operationResult.ReturnValue.ArticlePrice)
+                   ?? OperationResult<Article.Article>.Failure("Could not order article");
         }
     }
 }
